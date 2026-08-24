@@ -1,0 +1,53 @@
+module Base
+{
+    entity DoubleFenceGate
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_DoubleFenceGate,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            skillBaseHealth = 300,
+            dontNeedFrame = true,
+            BreakSound = BreakDoor,
+            face W
+            {
+                layer
+                {
+                    row = fixtures_doors_fences_01_81,
+                    row = fixtures_doors_fences_01_80,
+                    row = fixtures_doors_fences_01_89,
+                    row = fixtures_doors_fences_01_88,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = fixtures_doors_fences_01_82 fixtures_doors_fences_01_83 fixtures_doors_fences_01_90 fixtures_doors_fences_01_91,
+                }
+            }
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildPoleFence,
+            time = 50,
+            NeedToBeLearn = true,
+            category = Welding,
+            SkillRequired = MetalWelding:5,
+            xpAward = MetalWelding:50,
+            Tooltip = Tooltip_craft_doublePoleGateDesc,
+            inputs
+            {
+                item 10 [Base.BlowTorch] flags[DontRecordInput],
+                item 1 [Base.MetalPipe],
+                item 1 [Base.Hinge],
+                item 1 [Base.ScrapMetal],
+                item 1 [Base.WeldingRods] flags[DontRecordInput],
+            }
+        }
+    }
+}

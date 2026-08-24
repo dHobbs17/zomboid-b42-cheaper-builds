@@ -1,0 +1,46 @@
+module Base
+{
+    entity StickFence
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_StickFence,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            health = 200,
+            skillBaseHealth = 50,
+            face W
+            {
+                layer
+                {
+                    row = crafted_04_124,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = crafted_04_123,
+                }
+            }
+            corner = crafted_04_127,
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildLowNoTool,
+            time = 25,
+            category = Carpentry,
+            Tags = Carpentry,
+            xpAward = Woodwork:1,
+            Tooltip = Tooltip_craft_stickFenceDesc,
+            inputs
+            {
+                item 1 [Base.LongStick;Base.Sapling],
+                item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.Twine;Base.Rope;Base.SheetRope] flags[DontReplace],
+            }
+        }
+    }
+}

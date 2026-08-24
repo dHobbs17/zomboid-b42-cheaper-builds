@@ -1,0 +1,51 @@
+module Base
+{
+    entity MetalSmallWireFence
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_MetalSmallWireFence,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            LogicClass = WoodenWall,
+            health = 200,
+            skillBaseHealth = 20,
+            face W
+            {
+                layer
+                {
+                    row = fencing_01_26,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = fencing_01_25,
+                }
+            }
+            corner = fencing_01_29,
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildWallMetal,
+            time = 50,
+            NeedToBeLearn = true,
+            category = Welding,
+            SkillRequired = MetalWelding:3,
+            xpAward = MetalWelding:30,
+            Tooltip = Tooltip_craft_BigWiredFenceDesc,
+            inputs
+            {
+                item 2 [Base.BlowTorch] flags[DontRecordInput],
+                item 1 [Base.MetalPipe],
+                item 1 [Base.ScrapMetal],
+                item 1 [Base.Wire],
+                item 1 [Base.WeldingRods] flags[DontRecordInput],
+            }
+        }
+    }
+}

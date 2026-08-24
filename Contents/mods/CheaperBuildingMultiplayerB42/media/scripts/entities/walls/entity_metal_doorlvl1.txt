@@ -1,0 +1,63 @@
+module Base
+{
+    entity MetalDoorLvl1
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_Metal_DoorLvl1,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            skillBaseHealth = 300,
+            BreakSound = BreakDoor,
+            face W
+            {
+                layer
+                {
+                    row = fixtures_doors_01_68,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = fixtures_doors_01_69,
+                }
+            }
+            face W_OPEN
+            {
+                layer
+                {
+                    row = fixtures_doors_01_70,
+                }
+            }
+            face N_OPEN
+            {
+                layer
+                {
+                    row = fixtures_doors_01_71,
+                }
+            }
+        }
+        component CraftRecipe
+        {
+            OnAddToMenu = metalDoorLvl1Test,
+            timedAction = BuildWallMetal,
+            time = 50,
+            category = Welding,
+            SkillRequired = MetalWelding:3,
+            xpAward = MetalWelding:30,
+            Tooltip = Tooltip_craft_metalDoorDesc,
+            inputs
+            {
+                item 4 [Base.BlowTorch] flags[DontRecordInput],
+                item 1 [Base.SmallSheetMetal],
+                item 1 [Base.WeldingRods] flags[DontRecordInput],
+                item 1 [Base.Hinge],
+                item 1 [Base.Doorknob],
+            }
+        }
+    }
+}

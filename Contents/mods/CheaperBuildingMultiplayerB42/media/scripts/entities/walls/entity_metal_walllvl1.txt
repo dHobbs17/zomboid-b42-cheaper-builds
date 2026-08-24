@@ -1,0 +1,51 @@
+module Base
+{
+    entity MetalWallLvl1
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_MetalWallLvl1,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            LogicClass = WoodenWall,
+            health = 700,
+            skillBaseHealth = 20,
+            previousStage = WoodenWallFrame;MetalWallFrame,
+            face W
+            {
+                layer
+                {
+                    row = constructedobjects_01_64,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = constructedobjects_01_65,
+                }
+            }
+            corner = constructedobjects_01_51,
+        }
+        component CraftRecipe
+        {
+            OnAddToMenu = metalWallLvl1Test,
+            timedAction = BuildWallMetal,
+            time = 50,
+            category = Welding,
+            NeedToBeLearn = true,
+            SkillRequired = MetalWelding:3,
+            xpAward = MetalWelding:30,
+            Tooltip = Tooltip_craft_NeedsWallframeDesc,
+            inputs
+            {
+                item 4 [Base.BlowTorch] flags[DontRecordInput],
+                item 1 [Base.SmallSheetMetal],
+                item 1 [Base.WeldingRods] flags[DontRecordInput],
+            }
+        }
+    }
+}

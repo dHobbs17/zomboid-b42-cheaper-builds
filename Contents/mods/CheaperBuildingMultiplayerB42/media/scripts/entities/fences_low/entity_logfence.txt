@@ -1,0 +1,46 @@
+module Base
+{
+    entity LogFence
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_LogFence,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            health = 200,
+            skillBaseHealth = 50,
+            face W
+            {
+                layer
+                {
+                    row = crafted_04_116,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = crafted_04_115,
+                }
+            }
+            corner = crafted_04_119,
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildWallNoTool,
+            time = 38,
+            category = Carpentry,
+            Tags = Carpentry,
+            xpAward = Woodwork:5,
+            Tooltip = Tooltip_craft_stickFenceDesc,
+            inputs
+            {
+                item 1 [Base.Log],
+                item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.Twine;Base.Rope;Base.SheetRope] flags[DontReplace],
+            }
+        }
+    }
+}

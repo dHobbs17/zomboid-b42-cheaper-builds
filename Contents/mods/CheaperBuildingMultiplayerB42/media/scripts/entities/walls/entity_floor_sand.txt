@@ -1,0 +1,36 @@
+module Base
+{
+    entity SandFloor
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_SandFloor,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            isThumpable = false,
+            OnIsValid = BuildRecipeCode.floor.OnIsValid,
+            OnCreate = BuildRecipeCode.floor.OnCreate,
+            face SINGLE
+            {
+                layer
+                {
+                    row = blends_natural_01_5,
+                }
+            }
+        }
+        component CraftRecipe
+        {
+            timedAction = EmptyBag,
+            time = 25,
+            category = Outdoors,
+            Tooltip = Tooltip_craft_sandFloorDesc,
+            inputs
+            {
+                item 1 [Base.Sandbag] flags[Prop1],
+            }
+        }
+    }
+}

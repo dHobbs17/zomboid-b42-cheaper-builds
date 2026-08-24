@@ -1,0 +1,47 @@
+module Base
+{
+    entity LogGate
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_LogGate,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            skillBaseHealth = 300,
+            dontNeedFrame = true,
+            BreakSound = BreakDoor,
+            face W
+            {
+                layer
+                {
+                    row = walls_logs_81,
+                    row = walls_logs_80,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = walls_logs_82 walls_logs_83,
+                }
+            }
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildWallNoTool,
+            time = 38,
+            category = Carpentry,
+            Tags = Carpentry,
+            xpAward = Woodwork:5,
+            Tooltip = Tooltip_craft_logGateDesc,
+            inputs
+            {
+                item 1 [Base.Log],
+                item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.Twine;Base.Rope;Base.SheetRope] flags[DontReplace],
+            }
+        }
+    }
+}

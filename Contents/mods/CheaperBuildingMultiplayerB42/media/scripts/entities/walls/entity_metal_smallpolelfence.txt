@@ -1,0 +1,49 @@
+module Base
+{
+    entity MetalSmallPoleFence
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_MetalSmallPoleFence,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            LogicClass = WoodenWall,
+            health = 350,
+            skillBaseHealth = 20,
+            face W
+            {
+                layer
+                {
+                    row = constructedobjects_01_62,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = constructedobjects_01_61,
+                }
+            }
+            corner = constructedobjects_01_60,
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildPoleFenceSmall,
+            time = 50,
+            NeedToBeLearn = true,
+            category = Welding,
+            SkillRequired = MetalWelding:3,
+            xpAward = MetalWelding:30,
+            Tooltip = Tooltip_craft_MetalPoleFenceDesc,
+            inputs
+            {
+                item 2 [Base.BlowTorch] flags[DontRecordInput],
+                item 1 [Base.MetalPipe],
+                item 1 [Base.WeldingRods] flags[DontRecordInput],
+            }
+        }
+    }
+}

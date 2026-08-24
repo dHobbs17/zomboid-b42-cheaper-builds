@@ -1,0 +1,50 @@
+module Base
+{
+    entity MetalBigMetalFence
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_MetalBigMetalFence,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            LogicClass = WoodenWall,
+            health = 450,
+            skillBaseHealth = 50,
+            face W
+            {
+                layer
+                {
+                    row = constructedobjects_01_78,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = constructedobjects_01_77,
+                }
+            }
+            corner = constructedobjects_01_76,
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildPoleFence,
+            time = 50,
+            NeedToBeLearn = true,
+            category = Welding,
+            SkillRequired = MetalWelding:3,
+            xpAward = MetalWelding:30,
+            Tooltip = Tooltip_craft_BigMetalFenceDesc,
+            inputs
+            {
+                item 5 [Base.BlowTorch] flags[DontRecordInput],
+                item 1 [Base.MetalPipe],
+                item 1 [Base.ScrapMetal],
+                item 1 [Base.WeldingRods] flags[DontRecordInput],
+            }
+        }
+    }
+}

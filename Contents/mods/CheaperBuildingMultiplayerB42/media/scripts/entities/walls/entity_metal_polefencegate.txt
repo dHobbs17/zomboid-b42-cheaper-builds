@@ -1,0 +1,64 @@
+module Base
+{
+    entity MetalPoleFenceGate
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_MetalPoleFenceGate,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            skillBaseHealth = 300,
+            dontNeedFrame = true,
+            BreakSound = BreakDoor,
+            face W
+            {
+                layer
+                {
+                    row = fixtures_doors_fences_01_24,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = fixtures_doors_fences_01_25,
+                }
+            }
+            face W_OPEN
+            {
+                layer
+                {
+                    row = fixtures_doors_fences_01_26,
+                }
+            }
+            face N_OPEN
+            {
+                layer
+                {
+                    row = fixtures_doors_fences_01_27,
+                }
+            }
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildPoleFence,
+            time = 50,
+            NeedToBeLearn = true,
+            category = Welding,
+            SkillRequired = MetalWelding:3,
+            xpAward = MetalWelding:30,
+            Tooltip = Tooltip_craft_poleFenceGateDesc,
+            inputs
+            {
+                item 4 [Base.BlowTorch] flags[DontRecordInput],
+                item 1 [Base.MetalPipe],
+                item 1 [Base.Hinge],
+                item 1 [Base.ScrapMetal],
+                item 1 [Base.WeldingRods] flags[DontRecordInput],
+            }
+        }
+    }
+}

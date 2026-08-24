@@ -1,0 +1,47 @@
+module Base
+{
+    entity LogDoorFrameLvl1
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_Log_DoorframeLvl1,
+            uiEnabled = false,
+        }
+        component SpriteConfig
+        {
+            health = 500,
+            skillBaseHealth = 50,
+            isThumpable = false,
+            OnIsValid = BuildRecipeCode.doorFrame.OnIsValid,
+            face W
+            {
+                layer
+                {
+                    row = walls_logs_50,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = walls_logs_51,
+                }
+            }
+            corner = walls_exterior_wooden_01_27,
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildWallNoTool,
+            time = 50,
+            category = Carpentry,
+            xpAward = Woodwork:10,
+            Tooltip = Tooltip_craft_doorFrameDesc,
+            inputs
+            {
+                item 1 [Base.Log],
+                item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.Twine;Base.Rope;Base.SheetRope] flags[DontReplace],
+            }
+        }
+    }
+}

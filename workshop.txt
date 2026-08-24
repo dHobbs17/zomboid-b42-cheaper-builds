@@ -1,0 +1,6 @@
+version=1
+id=3788978147
+title=Cheaper Building Multiplayer B42
+description=Reduces construction material requirements to 1 of each item and cuts craft time by 75% for walls, doors, windows, frames, stairs, floors, fences and gates (carpentry, masonry, welding) in Build 42.
+tags=Build 42;Buildings;Multiplayer
+visibility=public
