@@ -40,7 +40,7 @@ module Base
             {
                 item 1 tags[base:masonstrowel] mode:keep flags[Prop1;MayDegradeLight],
                 item 1 tags[base:concrete] flags[DontRecordInput],
-                item 1 [Base.StoneBlock],
+                item 2 [Base.StoneBlock],
             }
         }
     }
