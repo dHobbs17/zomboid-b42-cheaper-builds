@@ -52,6 +52,15 @@ $sourceDirs = @("walls", "stairs", "fences_low")
 # Decorative wall coverings - not structural building objects, out of scope.
 $excludeFiles = @("paint_sign.txt", "paint_wall.txt", "paper_wall.txt", "plaster_wall.txt")
 
+# These four use "face SINGLE" in their SpriteConfig, which the engine rejects when a
+# mod redefines the entity ("Unknown block 'face' in entity iso script"), risking a
+# broken sprite config for objects that would otherwise still be buildable. They all
+# already cost 1 of every material in vanilla, so the only thing the mod would change
+# is craft time - not worth a load error. Every other entity uses directional faces
+# (face W/N/S/...) and redefines cleanly.
+$excludeFiles += @("entity_floor_dirt.txt", "entity_floor_gravel.txt",
+                   "entity_floor_sand.txt", "entity_woodenpole.txt")
+
 $processed = 0
 $skipped = 0
 
