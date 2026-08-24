@@ -3,4 +3,4 @@ id=CheaperBuildingMultiplayerB42
 description=Reduces construction material requirements to 1 of each item and cuts craft time by 75% for walls, doors, windows, frames, stairs, floors, fences and gates (carpentry, masonry, welding) in Build 42.
 poster=poster.png
 modversion=2.0
-minVersion=42
+versionMin=42.0
