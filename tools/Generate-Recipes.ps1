@@ -75,6 +75,8 @@ $MaterialOverrides = @{
     # Carpentry
     "DoubleDoor"              = @{ "Base.Plank" = 4; "Base.Nails" = 4; "Base.Hinge" = 2; "Base.Doorknob" = 2 }
     "Wood_Stairs"             = @{ "Base.Plank" = 4; "Base.Nails" = 4 }
+    # "Base.RippedSheets" matches the rags/twine/rope/sheet-rope alternatives line.
+    "Log_Stairs"              = @{ "Base.Log" = 4; "Base.RippedSheets" = 4 }
     "WoodFenceGate"           = @{ "Base.Plank" = 1; "Base.Nails" = 1; "Base.Hinge" = 2 }
 
     # Masonry - concrete drops to 1, the block/brick body keeps some weight

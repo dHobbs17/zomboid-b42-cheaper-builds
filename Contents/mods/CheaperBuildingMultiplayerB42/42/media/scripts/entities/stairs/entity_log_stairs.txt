@@ -43,9 +43,9 @@ module Base
             inputs
             {
                 item 1 tags[base:hammer] mode:keep flags[MayDegradeVeryLight],
-                item 1 [Base.Log],
+                item 4 [Base.Log],
                 item 1 tags[base:choptree;base:saw;base:crudesaw] mode:keep flags[Prop1;MayDegradeLight;IsNotDull],
-                item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.Twine;Base.Rope;Base.SheetRope] flags[DontReplace],
+                item 4 [Base.RippedSheets;Base.RippedSheetsDirty;Base.Twine;Base.Rope;Base.SheetRope] flags[DontReplace],
             }
         }
     }
