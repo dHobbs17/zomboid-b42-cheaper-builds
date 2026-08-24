@@ -36,8 +36,11 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+# Build 42 mods must keep their content inside a version folder (42\), not flat at
+# the mod root - the game resolves media/ through that folder. A flat layout makes
+# the loader report the mod as "not found" (or load it with zero content).
 $SourceEntitiesRoot = Join-Path $PZRoot "media\scripts\generated\entities"
-$DestScriptsRoot = Join-Path $ModRoot "media\scripts\entities"
+$DestScriptsRoot = Join-Path $ModRoot "42\media\scripts\entities"
 
 if (-not (Test-Path $SourceEntitiesRoot)) {
     throw "Could not find vanilla entities folder at: $SourceEntitiesRoot"
