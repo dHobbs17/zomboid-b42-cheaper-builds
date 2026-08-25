@@ -79,6 +79,14 @@ $MaterialOverrides = @{
     "Log_Stairs"              = @{ "Base.Log" = 4; "Base.RippedSheets" = 4 }
     "WoodFenceGate"           = @{ "Base.Plank" = 1; "Base.Nails" = 1; "Base.Hinge" = 2 }
 
+    # A door needs a hinge top and bottom to make sense, so every hinged door keeps its
+    # vanilla pair. Their other materials still fall through to $DefaultAmount.
+    "WoodenDoorLvl1"          = @{ "Base.Hinge" = 2 }
+    "WoodenDoorLvl2"          = @{ "Base.Hinge" = 2 }
+    "WoodenDoorLvl3"          = @{ "Base.Hinge" = 2 }
+    "MetalDoorLvl1"           = @{ "Base.Hinge" = 2 }
+    "MetalDoorLvl2"           = @{ "Base.Hinge" = 2 }
+
     # Masonry - concrete drops to 1, the block/brick body keeps some weight
     "StoneWall"               = @{ "base:concrete" = 1; "Base.StoneBlock" = 2 }
     "StoneDoorFrame"          = @{ "base:concrete" = 1; "Base.StoneBlock" = 2 }
