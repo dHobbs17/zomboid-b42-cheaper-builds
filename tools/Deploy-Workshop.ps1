@@ -43,10 +43,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$DefaultSteamUser = "your-steam-username"
-
 # Both values are prompted for when not passed, so a bare run is fully interactive
-# while still being scriptable with -ChangeNote/-SteamUser.
+# while still being scriptable with -ChangeNote/-SteamUser. Deliberately no default
+# username - this repo is public and the account name does not belong in it.
 if (-not $ChangeNote) {
     Write-Host ""
     Write-Host "Change note for this update (shown in the Workshop 'Change Notes' tab):" -ForegroundColor Cyan
@@ -58,9 +57,12 @@ if (-not $ChangeNote) {
 }
 
 if (-not $SteamUser) {
-    $entered = Read-Host "  Steam username [$DefaultSteamUser]"
-    if ([string]::IsNullOrWhiteSpace($entered)) { $SteamUser = $DefaultSteamUser }
-    else { $SteamUser = $entered.Trim() }
+    $SteamUser = Read-Host "  Steam username"
+    while ([string]::IsNullOrWhiteSpace($SteamUser)) {
+        Write-Warning "A Steam username is required to publish."
+        $SteamUser = Read-Host "  Steam username"
+    }
+    $SteamUser = $SteamUser.Trim()
 }
 
 # --- Hardcoded for this machine ---------------------------------------------------
