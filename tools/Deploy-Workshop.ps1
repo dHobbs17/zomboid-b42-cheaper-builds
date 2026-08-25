@@ -9,15 +9,18 @@
     workshop-description.bbcode into the VDF, publishes, then reads Steam's own
     workshop log to confirm the upload rather than trusting the console output.
 
-    Paths are hardcoded for this machine. Run from anywhere:
-        .\Deploy-Workshop.ps1 -ChangeNote "what changed"
+    Paths are hardcoded for this machine. Run it bare and it prompts for what it needs:
+        .\Deploy-Workshop.ps1
 
 .PARAMETER ChangeNote
-    Change note shown in the Workshop "Change Notes" tab. Required - publishing
-    without one leaves users guessing what moved.
+    Change note shown in the Workshop "Change Notes" tab. Prompted for when omitted,
+    and cannot be left blank - publishing without one leaves users guessing.
 
 .PARAMETER SteamUser
-    Steam account that owns the Workshop item.
+    Steam account that owns the Workshop item. Prompted for when omitted.
+
+.PARAMETER Yes
+    Skip the confirmation prompt before publishing.
 
 .PARAMETER SkipUpload
     Build the VDF and stop. Useful for inspecting the generated file first.
@@ -31,15 +34,34 @@
     the desktop Steam client. That is expected - relaunch it afterwards.
 #>
 param(
-    [Parameter(Mandatory = $true)]
     [string]$ChangeNote,
-
-    [string]$SteamUser = "your-steam-username",
+    [string]$SteamUser,
     [switch]$SkipUpload,
-    [switch]$RawNewlines
+    [switch]$RawNewlines,
+    [switch]$Yes
 )
 
 $ErrorActionPreference = "Stop"
+
+$DefaultSteamUser = "your-steam-username"
+
+# Both values are prompted for when not passed, so a bare run is fully interactive
+# while still being scriptable with -ChangeNote/-SteamUser.
+if (-not $ChangeNote) {
+    Write-Host ""
+    Write-Host "Change note for this update (shown in the Workshop 'Change Notes' tab):" -ForegroundColor Cyan
+    $ChangeNote = Read-Host "  Change note"
+    while ([string]::IsNullOrWhiteSpace($ChangeNote)) {
+        Write-Warning "A change note is required - users see this to know what moved."
+        $ChangeNote = Read-Host "  Change note"
+    }
+}
+
+if (-not $SteamUser) {
+    $entered = Read-Host "  Steam username [$DefaultSteamUser]"
+    if ([string]::IsNullOrWhiteSpace($entered)) { $SteamUser = $DefaultSteamUser }
+    else { $SteamUser = $entered.Trim() }
+}
 
 # --- Hardcoded for this machine ---------------------------------------------------
 $RepoRoot   = "E:\Projects\zomboid\zomboid-cheap-builds"
@@ -114,6 +136,16 @@ if ($SkipUpload) {
     Write-Host ""
     Write-Host "-SkipUpload set, not publishing." -ForegroundColor Yellow
     return
+}
+
+# Publishing is public and immediate, so confirm before pushing unless told not to.
+if (-not $Yes) {
+    Write-Host ""
+    $answer = Read-Host "Publish version $modVersion to the Steam Workshop as '$SteamUser'? [y/N]"
+    if ($answer.Trim() -notmatch '^(y|yes)$') {
+        Write-Host "Cancelled - the VDF is built but nothing was published." -ForegroundColor Yellow
+        return
+    }
 }
 
 # Note where Steam's log ends now, so we only report lines from THIS upload.
