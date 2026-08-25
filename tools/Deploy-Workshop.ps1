@@ -25,9 +25,10 @@
 .PARAMETER SkipUpload
     Build the VDF and stop. Useful for inspecting the generated file first.
 
-.PARAMETER RawNewlines
-    Emit real newlines in the description instead of \n escapes. Use only if a
-    published page shows literal "\n" text.
+.PARAMETER EscapeNewlines
+    Write the description's line breaks as \n escape sequences instead of real
+    newlines. Steam does NOT interpret those escapes - it renders them literally on
+    the page - so this exists only as an escape hatch if Steam's parser ever changes.
 
 .NOTES
     Steam allows one authenticated session per account, so uploading will disconnect
@@ -37,7 +38,7 @@ param(
     [string]$ChangeNote,
     [string]$SteamUser,
     [switch]$SkipUpload,
-    [switch]$RawNewlines,
+    [switch]$EscapeNewlines,
     [switch]$Yes
 )
 
@@ -98,9 +99,16 @@ function ConvertTo-VdfString {
     $s = $Text -replace '\\', '\\'
     $s = $s -replace '"', '\"'
     $s = $s -replace "`r`n", "`n"
+    # Steam's VDF reader does NOT decode \n escapes in the description - it prints them
+    # verbatim on the Workshop page - so real newlines have to survive into the quoted
+    # string. Its parser accepts a quoted value spanning multiple lines.
     if (-not $KeepNewlines) { $s = $s -replace "`n", '\n' }
     return $s
 }
+
+# A change note is a single-line field; fold any pasted line breaks into spaces so they
+# cannot terminate the quoted value early and corrupt the VDF.
+$ChangeNote = ($ChangeNote -replace "`r`n", " ") -replace "`n", " "
 
 # -Encoding UTF8 is required: Windows PowerShell 5.1 otherwise reads a BOM-less UTF-8
 # file as Windows-1252, turning em dashes and arrows into mojibake in the description.
@@ -115,7 +123,7 @@ $vdf = @"
     "previewfile"      "$(ConvertTo-VdfString -Text $PreviewFile -KeepNewlines:$false)"
     "visibility"       "$Visibility"
     "title"            "$Title"
-    "description"      "$(ConvertTo-VdfString -Text $descriptionRaw -KeepNewlines:$RawNewlines)"
+    "description"      "$(ConvertTo-VdfString -Text $descriptionRaw -KeepNewlines:(-not $EscapeNewlines))"
     "changenote"       "$(ConvertTo-VdfString -Text $ChangeNote -KeepNewlines:$false)"
 }
 "@
