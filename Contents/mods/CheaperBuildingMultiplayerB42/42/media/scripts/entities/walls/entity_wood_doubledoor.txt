@@ -44,7 +44,7 @@ module Base
                 item 1 tags[base:hammer] mode:keep flags[Prop1;MayDegradeVeryLight],
                 item 4 [Base.Plank],
                 item 4 [Base.Nails],
-                item 2 [Base.Hinge],
+                item 4 [Base.Hinge],
                 item 2 [Base.Doorknob],
             }
         }

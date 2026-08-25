@@ -55,7 +55,7 @@ module Base
             {
                 item 4 [Base.BlowTorch] flags[DontRecordInput],
                 item 1 [Base.MetalPipe],
-                item 1 [Base.Hinge],
+                item 2 [Base.Hinge],
                 item 1 [Base.ScrapMetal],
                 item 1 [Base.WeldingRods] flags[DontRecordInput],
             }

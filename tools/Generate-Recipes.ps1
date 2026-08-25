@@ -73,7 +73,9 @@ $excludeFiles += @("entity_floor_dirt.txt", "entity_floor_gravel.txt",
 # this table reads as the full intended recipe rather than just the exceptions.
 $MaterialOverrides = @{
     # Carpentry
-    "DoubleDoor"              = @{ "Base.Plank" = 4; "Base.Nails" = 4; "Base.Hinge" = 2; "Base.Doorknob" = 2 }
+    # Hinges are never discounted: a swinging object needs a pair per leaf, so single
+    # doors and gates keep 2 and double-width ones keep 4 - both the vanilla counts.
+    "DoubleDoor"              = @{ "Base.Plank" = 4; "Base.Nails" = 4; "Base.Hinge" = 4; "Base.Doorknob" = 2 }
     "Wood_Stairs"             = @{ "Base.Plank" = 4; "Base.Nails" = 4 }
     # "Base.RippedSheets" matches the rags/twine/rope/sheet-rope alternatives line.
     "Log_Stairs"              = @{ "Base.Log" = 4; "Base.RippedSheets" = 4 }
@@ -87,6 +89,12 @@ $MaterialOverrides = @{
     "MetalDoorLvl1"           = @{ "Base.Hinge" = 2 }
     "MetalDoorLvl2"           = @{ "Base.Hinge" = 2 }
 
+    # Same reasoning for gates - a swinging gate needs a hinge pair. This also keeps the
+    # single metal gates consistent with the wood fence gate, which kept its vanilla 2.
+    "MetalPoleFenceGate"      = @{ "Base.Hinge" = 2 }
+    "MetalPoleFenceGateSmall" = @{ "Base.Hinge" = 2 }
+    "MetalWireFenceGate"      = @{ "Base.Hinge" = 2 }
+
     # Masonry - concrete drops to 1, the block/brick body keeps some weight
     "StoneWall"               = @{ "base:concrete" = 1; "Base.StoneBlock" = 2 }
     "StoneDoorFrame"          = @{ "base:concrete" = 1; "Base.StoneBlock" = 2 }
@@ -99,8 +107,8 @@ $MaterialOverrides = @{
     "BrickWindowFrameLvl2"    = @{ "base:concrete" = 1; "Base.ClayBrick" = 2 }
 
     # Welding - the two double-width gates
-    "DoubleFenceGate"         = @{ "Base.MetalPipe" = 4; "Base.WeldingRods" = 4; "Base.Hinge" = 2; "Base.ScrapMetal" = 1 }
-    "DoubleWireGate"          = @{ "Base.MetalPipe" = 4; "Base.WeldingRods" = 4; "Base.Hinge" = 2; "Base.Wire" = 1; "Base.ScrapMetal" = 1 }
+    "DoubleFenceGate"         = @{ "Base.MetalPipe" = 4; "Base.WeldingRods" = 4; "Base.Hinge" = 4; "Base.ScrapMetal" = 1 }
+    "DoubleWireGate"          = @{ "Base.MetalPipe" = 4; "Base.WeldingRods" = 4; "Base.Hinge" = 4; "Base.Wire" = 1; "Base.ScrapMetal" = 1 }
 }
 
 $processed = 0
